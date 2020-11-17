@@ -12,7 +12,7 @@
  */
 
 const mapData = (() => {
-  const storeData = {}
+  const storeData = new Map()
   let id = 1
   return {
     set(element, key, data) {
@@ -24,7 +24,7 @@ const mapData = (() => {
         id++
       }
 
-      storeData[element.bsKey.id] = data
+      storeData.set(element.bsKey.id, data)
     },
     get(element, key) {
       if (!element || typeof element.bsKey === 'undefined') {
@@ -33,7 +33,7 @@ const mapData = (() => {
 
       const keyProperties = element.bsKey
       if (keyProperties.key === key) {
-        return storeData[keyProperties.id]
+        return storeData.get(keyProperties.id)
       }
 
       return null
@@ -45,7 +45,7 @@ const mapData = (() => {
 
       const keyProperties = element.bsKey
       if (keyProperties.key === key) {
-        delete storeData[keyProperties.id]
+        storeData.delete(keyProperties.id)
         delete element.bsKey
       }
     }
