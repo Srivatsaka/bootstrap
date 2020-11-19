@@ -12,55 +12,29 @@
  */
 
 const mapData = (() => {
-  const storeData = new Map()
-  let id = 1
+  const map = new Map()
   return {
-    set(element, key, data) {
-      if (typeof element.bsKey === 'undefined') {
-        element.bsKey = {
-          key,
-          id
-        }
-        id++
-      }
-
-      storeData.set(element.bsKey.id, data)
+    set(element, data) {
+      map.set(element, data)
     },
-    get(element, key) {
-      if (!element || typeof element.bsKey === 'undefined') {
-        return null
-      }
-
-      const keyProperties = element.bsKey
-      if (keyProperties.key === key) {
-        return storeData.get(keyProperties.id)
-      }
-
-      return null
+    get(element) {
+      return map.get(element) || null
     },
-    delete(element, key) {
-      if (typeof element.bsKey === 'undefined') {
-        return
-      }
-
-      const keyProperties = element.bsKey
-      if (keyProperties.key === key) {
-        storeData.delete(keyProperties.id)
-        delete element.bsKey
-      }
+    delete(element) {
+      map.delete(element)
     }
   }
 })()
 
 const Data = {
-  setData(instance, key, data) {
-    mapData.set(instance, key, data)
+  setData(instance, data) {
+    mapData.set(instance, data)
   },
-  getData(instance, key) {
-    return mapData.get(instance, key)
+  getData(instance) {
+    return mapData.get(instance)
   },
-  removeData(instance, key) {
-    mapData.delete(instance, key)
+  removeData(instance) {
+    mapData.delete(instance)
   }
 }
 

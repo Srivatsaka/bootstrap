@@ -92,7 +92,7 @@ class Modal {
     this._ignoreBackdropClick = false
     this._isTransitioning = false
     this._scrollbarWidth = 0
-    Data.setData(element, DATA_KEY, this)
+    Data.setData(element, this)
   }
 
   // Getters
@@ -208,7 +208,7 @@ class Modal {
      */
     EventHandler.off(document, EVENT_FOCUSIN)
 
-    Data.removeData(this._element, DATA_KEY)
+    Data.removeData(this._element)
 
     this._config = null
     this._element = null
@@ -541,7 +541,7 @@ class Modal {
 
   static jQueryInterface(config, relatedTarget) {
     return this.each(function () {
-      let data = Data.getData(this, DATA_KEY)
+      let data = Data.getData(this)
       const _config = {
         ...Default,
         ...Manipulator.getDataAttributes(this),
@@ -565,7 +565,7 @@ class Modal {
   }
 
   static getInstance(element) {
-    return Data.getData(element, DATA_KEY)
+    return Data.getData(element)
   }
 }
 
@@ -595,7 +595,7 @@ EventHandler.on(document, EVENT_CLICK_DATA_API, SELECTOR_DATA_TOGGLE, function (
     })
   })
 
-  let data = Data.getData(target, DATA_KEY)
+  let data = Data.getData(target)
   if (!data) {
     const config = {
       ...Manipulator.getDataAttributes(target),

@@ -105,7 +105,7 @@ class Dropdown {
     this._inNavbar = this._detectNavbar()
 
     this._addEventListeners()
-    Data.setData(element, DATA_KEY, this)
+    Data.setData(element, this)
   }
 
   // Getters
@@ -229,7 +229,7 @@ class Dropdown {
   }
 
   dispose() {
-    Data.removeData(this._element, DATA_KEY)
+    Data.removeData(this._element)
     EventHandler.off(this._element, EVENT_KEY)
     this._element = null
     this._menu = null
@@ -345,7 +345,7 @@ class Dropdown {
   // Static
 
   static dropdownInterface(element, config) {
-    let data = Data.getData(element, DATA_KEY)
+    let data = Data.getData(element)
     const _config = typeof config === 'object' ? config : null
 
     if (!data) {
@@ -377,7 +377,7 @@ class Dropdown {
 
     for (let i = 0, len = toggles.length; i < len; i++) {
       const parent = Dropdown.getParentFromElement(toggles[i])
-      const context = Data.getData(toggles[i], DATA_KEY)
+      const context = Data.getData(toggles[i])
       const relatedTarget = {
         relatedTarget: toggles[i]
       }
@@ -491,7 +491,7 @@ class Dropdown {
   }
 
   static getInstance(element) {
-    return Data.getData(element, DATA_KEY)
+    return Data.getData(element)
   }
 }
 

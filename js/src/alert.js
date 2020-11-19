@@ -49,7 +49,7 @@ class Alert {
     this._element = element
 
     if (this._element) {
-      Data.setData(element, DATA_KEY, this)
+      Data.setData(element, this)
     }
   }
 
@@ -73,7 +73,7 @@ class Alert {
   }
 
   dispose() {
-    Data.removeData(this._element, DATA_KEY)
+    Data.removeData(this._element)
     this._element = null
   }
 
@@ -113,7 +113,7 @@ class Alert {
 
   static jQueryInterface(config) {
     return this.each(function () {
-      let data = Data.getData(this, DATA_KEY)
+      let data = Data.getData(this)
 
       if (!data) {
         data = new Alert(this)
@@ -136,7 +136,7 @@ class Alert {
   }
 
   static getInstance(element) {
-    return Data.getData(element, DATA_KEY)
+    return Data.getData(element)
   }
 }
 

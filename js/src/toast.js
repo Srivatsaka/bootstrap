@@ -66,7 +66,7 @@ class Toast {
     this._config = this._getConfig(config)
     this._timeout = null
     this._setListeners()
-    Data.setData(element, DATA_KEY, this)
+    Data.setData(element, this)
   }
 
   // Getters
@@ -159,7 +159,7 @@ class Toast {
     }
 
     EventHandler.off(this._element, EVENT_CLICK_DISMISS)
-    Data.removeData(this._element, DATA_KEY)
+    Data.removeData(this._element)
 
     this._element = null
     this._config = null
@@ -192,7 +192,7 @@ class Toast {
 
   static jQueryInterface(config) {
     return this.each(function () {
-      let data = Data.getData(this, DATA_KEY)
+      let data = Data.getData(this)
       const _config = typeof config === 'object' && config
 
       if (!data) {
@@ -210,7 +210,7 @@ class Toast {
   }
 
   static getInstance(element) {
-    return Data.getData(element, DATA_KEY)
+    return Data.getData(element)
   }
 }
 

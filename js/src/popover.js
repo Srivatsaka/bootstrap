@@ -140,7 +140,7 @@ class Popover extends Tooltip {
 
   static jQueryInterface(config) {
     return this.each(function () {
-      let data = Data.getData(this, DATA_KEY)
+      let data = Data.getData(this)
       const _config = typeof config === 'object' ? config : null
 
       if (!data && /dispose|hide/.test(config)) {
@@ -149,7 +149,7 @@ class Popover extends Tooltip {
 
       if (!data) {
         data = new Popover(this, _config)
-        Data.setData(this, DATA_KEY, data)
+        Data.setData(this, data)
       }
 
       if (typeof config === 'string') {
@@ -163,7 +163,7 @@ class Popover extends Tooltip {
   }
 
   static getInstance(element) {
-    return Data.getData(element, DATA_KEY)
+    return Data.getData(element)
   }
 }
 

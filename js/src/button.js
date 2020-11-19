@@ -36,7 +36,7 @@ const EVENT_CLICK_DATA_API = `click${EVENT_KEY}${DATA_API_KEY}`
 class Button {
   constructor(element) {
     this._element = element
-    Data.setData(element, DATA_KEY, this)
+    Data.setData(element, this)
   }
 
   // Getters
@@ -53,7 +53,7 @@ class Button {
   }
 
   dispose() {
-    Data.removeData(this._element, DATA_KEY)
+    Data.removeData(this._element)
     this._element = null
   }
 
@@ -61,7 +61,7 @@ class Button {
 
   static jQueryInterface(config) {
     return this.each(function () {
-      let data = Data.getData(this, DATA_KEY)
+      let data = Data.getData(this)
 
       if (!data) {
         data = new Button(this)
@@ -74,7 +74,7 @@ class Button {
   }
 
   static getInstance(element) {
-    return Data.getData(element, DATA_KEY)
+    return Data.getData(element)
   }
 }
 
@@ -89,7 +89,7 @@ EventHandler.on(document, EVENT_CLICK_DATA_API, SELECTOR_DATA_TOGGLE, event => {
 
   const button = event.target.closest(SELECTOR_DATA_TOGGLE)
 
-  let data = Data.getData(button, DATA_KEY)
+  let data = Data.getData(button)
   if (!data) {
     data = new Button(button)
   }

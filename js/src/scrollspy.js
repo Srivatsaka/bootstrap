@@ -82,7 +82,7 @@ class ScrollSpy {
     this.refresh()
     this._process()
 
-    Data.setData(element, DATA_KEY, this)
+    Data.setData(element, this)
   }
 
   // Getters
@@ -141,7 +141,7 @@ class ScrollSpy {
   }
 
   dispose() {
-    Data.removeData(this._element, DATA_KEY)
+    Data.removeData(this._element)
     EventHandler.off(this._scrollElement, EVENT_KEY)
 
     this._element = null
@@ -285,7 +285,7 @@ class ScrollSpy {
 
   static jQueryInterface(config) {
     return this.each(function () {
-      let data = Data.getData(this, DATA_KEY)
+      let data = Data.getData(this)
       const _config = typeof config === 'object' && config
 
       if (!data) {
@@ -303,7 +303,7 @@ class ScrollSpy {
   }
 
   static getInstance(element) {
-    return Data.getData(element, DATA_KEY)
+    return Data.getData(element)
   }
 }
 

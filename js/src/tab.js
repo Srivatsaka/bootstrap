@@ -60,7 +60,7 @@ class Tab {
   constructor(element) {
     this._element = element
 
-    Data.setData(this._element, DATA_KEY, this)
+    Data.setData(this._element, this)
   }
 
   // Getters
@@ -128,7 +128,7 @@ class Tab {
   }
 
   dispose() {
-    Data.removeData(this._element, DATA_KEY)
+    Data.removeData(this._element)
     this._element = null
   }
 
@@ -206,7 +206,7 @@ class Tab {
 
   static jQueryInterface(config) {
     return this.each(function () {
-      const data = Data.getData(this, DATA_KEY) || new Tab(this)
+      const data = Data.getData(this) || new Tab(this)
 
       if (typeof config === 'string') {
         if (typeof data[config] === 'undefined') {
@@ -219,7 +219,7 @@ class Tab {
   }
 
   static getInstance(element) {
-    return Data.getData(element, DATA_KEY)
+    return Data.getData(element)
   }
 }
 
@@ -232,7 +232,7 @@ class Tab {
 EventHandler.on(document, EVENT_CLICK_DATA_API, SELECTOR_DATA_TOGGLE, function (event) {
   event.preventDefault()
 
-  const data = Data.getData(this, DATA_KEY) || new Tab(this)
+  const data = Data.getData(this) || new Tab(this)
   data.show()
 })
 
