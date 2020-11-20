@@ -11,31 +11,16 @@
  * ------------------------------------------------------------------------
  */
 
-const mapData = (() => {
-  const map = new Map()
-  return {
-    set(element, data) {
-      map.set(element, data)
-    },
-    get(element) {
-      return map.get(element) || null
-    },
-    delete(element) {
-      map.delete(element)
-    }
-  }
-})()
+const mapData = new Map()
 
-const Data = {
-  setData(instance, data) {
-    mapData.set(instance, data)
+export default {
+  setData(element, data) {
+    mapData.set(element, data)
   },
-  getData(instance) {
-    return mapData.get(instance)
+  getData(element) {
+    return mapData.get(element) || null
   },
-  removeData(instance) {
-    mapData.delete(instance)
+  removeData(element) {
+    mapData.delete(element)
   }
 }
-
-export default Data
