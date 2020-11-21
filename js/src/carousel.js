@@ -122,7 +122,7 @@ class Carousel {
     this._pointerEvent = Boolean(window.PointerEvent)
 
     this._addEventListeners()
-    Data.setData(element, this)
+    Data.set(element, this)
   }
 
   // Getters
@@ -219,7 +219,7 @@ class Carousel {
 
   dispose() {
     EventHandler.off(this._element, EVENT_KEY)
-    Data.removeData(this._element)
+    Data.remove(this._element)
 
     this._items = null
     this._config = null
@@ -526,7 +526,7 @@ class Carousel {
   // Static
 
   static carouselInterface(element, config) {
-    let data = Data.getData(element)
+    let data = Data.get(element)
     let _config = {
       ...Default,
       ...Manipulator.getDataAttributes(element)
@@ -585,14 +585,14 @@ class Carousel {
     Carousel.carouselInterface(target, config)
 
     if (slideIndex) {
-      Data.getData(target).to(slideIndex)
+      Data.get(target).to(slideIndex)
     }
 
     event.preventDefault()
   }
 
   static getInstance(element) {
-    return Data.getData(element)
+    return Data.get(element)
   }
 }
 
@@ -608,7 +608,7 @@ EventHandler.on(window, EVENT_LOAD_DATA_API, () => {
   const carousels = SelectorEngine.find(SELECTOR_DATA_RIDE)
 
   for (let i = 0, len = carousels.length; i < len; i++) {
-    Carousel.carouselInterface(carousels[i], Data.getData(carousels[i]))
+    Carousel.carouselInterface(carousels[i], Data.get(carousels[i]))
   }
 })
 

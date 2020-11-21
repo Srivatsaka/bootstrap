@@ -5,22 +5,16 @@
  * --------------------------------------------------------------------------
  */
 
-/**
- * ------------------------------------------------------------------------
- * Constants
- * ------------------------------------------------------------------------
- */
-
 const mapData = new Map()
 
 export default {
-  setData(element, data) {
+  set(element, data) {
     mapData.set(element, data)
   },
-  getData(element) {
+  get(element) {
     return mapData.get(element) || null
   },
-  removeData(element) {
+  remove(element) {
     mapData.delete(element)
   }
 }

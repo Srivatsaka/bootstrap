@@ -14,7 +14,7 @@ describe('Data', () => {
     clearFixture()
   })
 
-  describe('getData', () => {
+  describe('get', () => {
     it('should return stored data', () => {
       fixtureEl.innerHTML = '<div></div>'
 
@@ -23,13 +23,13 @@ describe('Data', () => {
         test: 'bsData'
       }
 
-      Data.setData(div, data)
-      expect(Data.getData(div)).toEqual(data)
+      Data.set(div, data)
+      expect(Data.get(div)).toEqual(data)
     })
 
     it('should return null on undefined element', () => {
-      expect(Data.getData(null)).toEqual(null)
-      expect(Data.getData(undefined)).toEqual(null)
+      expect(Data.get(null)).toEqual(null)
+      expect(Data.get(undefined)).toEqual(null)
     })
 
     it('should return null when an element have nothing stored', () => {
@@ -37,17 +37,17 @@ describe('Data', () => {
 
       const div = fixtureEl.querySelector('div')
 
-      expect(Data.getData(div)).toEqual(null)
+      expect(Data.get(div)).toEqual(null)
     })
   })
 
-  describe('removeData', () => {
+  describe('remove', () => {
     it('should do nothing when an element have nothing stored', () => {
       fixtureEl.innerHTML = '<div></div>'
 
       const div = fixtureEl.querySelector('div')
 
-      Data.removeData(div)
+      Data.remove(div)
       expect().nothing()
     })
   })

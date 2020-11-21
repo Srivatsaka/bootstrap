@@ -141,7 +141,7 @@ class Tooltip {
     this.tip = null
 
     this._setListeners()
-    Data.setData(element, this)
+    Data.set(element, this)
   }
 
   // Getters
@@ -194,14 +194,14 @@ class Tooltip {
     }
 
     if (event) {
-      let context = Data.getData(event.delegateTarget)
+      let context = Data.get(event.delegateTarget)
 
       if (!context) {
         context = new this.constructor(
           event.delegateTarget,
           this._getDelegateConfig()
         )
-        Data.setData(event.delegateTarget, context)
+        Data.set(event.delegateTarget, context)
       }
 
       context._activeTrigger.click = !context._activeTrigger.click
@@ -224,7 +224,7 @@ class Tooltip {
   dispose() {
     clearTimeout(this._timeout)
 
-    Data.removeData(this.element)
+    Data.remove(this.element)
 
     EventHandler.off(this.element, this.constructor.EVENT_KEY)
     EventHandler.off(this.element.closest(`.${CLASS_NAME_MODAL}`), 'hide.bs.modal', this._hideModalHandler)
@@ -283,7 +283,7 @@ class Tooltip {
       this._addAttachmentClass(attachment)
 
       const container = this._getContainer()
-      Data.setData(tip, this)
+      Data.set(tip, this)
 
       if (!this.element.ownerDocument.documentElement.contains(this.tip)) {
         container.appendChild(tip)
@@ -587,14 +587,14 @@ class Tooltip {
   }
 
   _enter(event, context) {
-    context = context || Data.getData(event.delegateTarget)
+    context = context || Data.get(event.delegateTarget)
 
     if (!context) {
       context = new this.constructor(
         event.delegateTarget,
         this._getDelegateConfig()
       )
-      Data.setData(event.delegateTarget, context)
+      Data.set(event.delegateTarget, context)
     }
 
     if (event) {
@@ -626,14 +626,14 @@ class Tooltip {
   }
 
   _leave(event, context) {
-    context = context || Data.getData(event.delegateTarget)
+    context = context || Data.get(event.delegateTarget)
 
     if (!context) {
       context = new this.constructor(
         event.delegateTarget,
         this._getDelegateConfig()
       )
-      Data.setData(event.delegateTarget, context)
+      Data.set(event.delegateTarget, context)
     }
 
     if (event) {
@@ -762,7 +762,7 @@ class Tooltip {
 
   static jQueryInterface(config) {
     return this.each(function () {
-      let data = Data.getData(this)
+      let data = Data.get(this)
       const _config = typeof config === 'object' && config
 
       if (!data && /dispose|hide/.test(config)) {
@@ -784,7 +784,7 @@ class Tooltip {
   }
 
   static getInstance(element) {
-    return Data.getData(element)
+    return Data.get(element)
   }
 }
 
