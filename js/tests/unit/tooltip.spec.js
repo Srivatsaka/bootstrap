@@ -546,8 +546,8 @@ describe('Tooltip', () => {
         }, 10)
       }
 
-      tooltipEl.addEventListener('show.bs.tooltip', ev => {
-        ev.preventDefault()
+      tooltipEl.addEventListener('show.bs.tooltip', event => {
+        event.preventDefault()
         expectedDone()
       })
 

@@ -120,8 +120,8 @@ describe('Tab', () => {
         }, 30)
       }
 
-      navEl.addEventListener('show.bs.tab', ev => {
-        ev.preventDefault()
+      navEl.addEventListener('show.bs.tab', event => {
+        event.preventDefault()
         expectDone()
       })
 
@@ -199,12 +199,12 @@ describe('Tab', () => {
       const secondTabTrigger = fixtureEl.querySelector('#triggerProfile')
       const secondTab = new Tab(secondTabTrigger)
 
-      secondTabTrigger.addEventListener('show.bs.tab', ev => {
-        expect(ev.relatedTarget.hash).toEqual('#home')
+      secondTabTrigger.addEventListener('show.bs.tab', event => {
+        expect(event.relatedTarget.hash).toEqual('#home')
       })
 
-      secondTabTrigger.addEventListener('shown.bs.tab', ev => {
-        expect(ev.relatedTarget.hash).toEqual('#home')
+      secondTabTrigger.addEventListener('shown.bs.tab', event => {
+        expect(event.relatedTarget.hash).toEqual('#home')
         expect(secondTabTrigger.getAttribute('aria-selected')).toEqual('true')
         expect(fixtureEl.querySelector('a:not(.active)').getAttribute('aria-selected')).toEqual('false')
         done()
@@ -230,14 +230,14 @@ describe('Tab', () => {
         secondTab.show()
       })
 
-      triggerList[0].addEventListener('hide.bs.tab', ev => {
+      triggerList[0].addEventListener('hide.bs.tab', event => {
         hideCalled = true
-        expect(ev.relatedTarget.hash).toEqual('#profile')
+        expect(event.relatedTarget.hash).toEqual('#profile')
       })
 
-      triggerList[0].addEventListener('hidden.bs.tab', ev => {
+      triggerList[0].addEventListener('hidden.bs.tab', event => {
         expect(hideCalled).toEqual(true)
-        expect(ev.relatedTarget.hash).toEqual('#profile')
+        expect(event.relatedTarget.hash).toEqual('#profile')
         done()
       })
 
@@ -266,8 +266,8 @@ describe('Tab', () => {
         secondTab.show()
       })
 
-      triggerList[0].addEventListener('hide.bs.tab', ev => {
-        ev.preventDefault()
+      triggerList[0].addEventListener('hide.bs.tab', event => {
+        event.preventDefault()
         expectDone()
       })
 

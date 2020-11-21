@@ -505,8 +505,8 @@ describe('Dropdown', () => {
       const dropdownEl = fixtureEl.querySelector('.dropdown')
       const dropdown = new Dropdown(btnDropdown)
 
-      dropdownEl.addEventListener('show.bs.dropdown', e => {
-        e.preventDefault()
+      dropdownEl.addEventListener('show.bs.dropdown', event => {
+        event.preventDefault()
       })
 
       dropdownEl.addEventListener('shown.bs.dropdown', () => {
@@ -637,8 +637,8 @@ describe('Dropdown', () => {
       const dropdownEl = fixtureEl.querySelector('.dropdown')
       const dropdown = new Dropdown(btnDropdown)
 
-      dropdownEl.addEventListener('show.bs.dropdown', e => {
-        e.preventDefault()
+      dropdownEl.addEventListener('show.bs.dropdown', event => {
+        event.preventDefault()
       })
 
       dropdownEl.addEventListener('shown.bs.dropdown', () => {
@@ -800,8 +800,8 @@ describe('Dropdown', () => {
       const dropdownMenu = fixtureEl.querySelector('.dropdown-menu')
       const dropdown = new Dropdown(btnDropdown)
 
-      dropdownEl.addEventListener('hide.bs.dropdown', e => {
-        e.preventDefault()
+      dropdownEl.addEventListener('hide.bs.dropdown', event => {
+        event.preventDefault()
       })
 
       dropdownEl.addEventListener('hidden.bs.dropdown', () => {
@@ -982,11 +982,11 @@ describe('Dropdown', () => {
         showEventTriggered = true
       })
 
-      dropdownEl.addEventListener('shown.bs.dropdown', e => {
+      dropdownEl.addEventListener('shown.bs.dropdown', event => {
         expect(btnDropdown.classList.contains('show')).toEqual(true)
         expect(btnDropdown.getAttribute('aria-expanded')).toEqual('true')
         expect(showEventTriggered).toEqual(true)
-        expect(e.relatedTarget).toEqual(btnDropdown)
+        expect(event.relatedTarget).toEqual(btnDropdown)
         document.body.click()
       })
 
@@ -994,11 +994,11 @@ describe('Dropdown', () => {
         hideEventTriggered = true
       })
 
-      dropdownEl.addEventListener('hidden.bs.dropdown', e => {
+      dropdownEl.addEventListener('hidden.bs.dropdown', event => {
         expect(btnDropdown.classList.contains('show')).toEqual(false)
         expect(btnDropdown.getAttribute('aria-expanded')).toEqual('false')
         expect(hideEventTriggered).toEqual(true)
-        expect(e.relatedTarget).toEqual(btnDropdown)
+        expect(event.relatedTarget).toEqual(btnDropdown)
         done()
       })
 
@@ -1207,12 +1207,12 @@ describe('Dropdown', () => {
       const triggerDropdown = fixtureEl.querySelector('[data-bs-toggle="dropdown"]')
       const dropdown = fixtureEl.querySelector('.dropdown')
 
-      dropdown.addEventListener('hide.bs.dropdown', e => {
-        expect(e.clickEvent).toBeUndefined()
+      dropdown.addEventListener('hide.bs.dropdown', event => {
+        expect(event.clickEvent).toBeUndefined()
       })
 
-      dropdown.addEventListener('hidden.bs.dropdown', e => {
-        expect(e.clickEvent).toBeUndefined()
+      dropdown.addEventListener('hidden.bs.dropdown', event => {
+        expect(event.clickEvent).toBeUndefined()
         done()
       })
 
